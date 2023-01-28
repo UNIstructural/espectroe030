@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 # from functions import *
-from module import *
 import matplotlib.pyplot as plt
 from PIL import Image
 # plt.style.use('science')
