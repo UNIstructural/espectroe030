@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 # from functions import *
 import matplotlib.pyplot as plt
+import numpy as np
 from PIL import Image
 # plt.style.use('science')
 import io
