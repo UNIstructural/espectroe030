@@ -23,6 +23,7 @@ suelo  = {'S0':{'Z4':0.8,'Z3':0.8,'Z2':0.8,'Z1':0.8,},
           'S2':{'Z4':1.05,'Z3':1.15,'Z2':1.20,'Z1':1.60,},
           'S3':{'Z4':1.10,'Z3':1.20,'Z2':1.40,'Z1':2.00,},}
 zona = {'Z1':0.10,'Z2':0.25,'Z3':0.35,'Z4':0.45,}
+uso = {'Escencial':1.5,'Importante':1.3,'Común':1.0,}
 red = {'Acero: Pórticos Especiales Resistentes a Momentos (SMF)':8,
       'Acero: Pórticos Intermedios Resistentes a Momentos (IMF)':5,
       'Acero: Pórticos Ordinarios Resistentes a Momentos (OMF)':4,
@@ -60,9 +61,9 @@ with st.sidebar.container():
     with col1:
         Z = st.selectbox('Zona',('Z1', 'Z2','Z3', 'Z4'),index=3)
     with col2:
-        u = st.selectbox('Uso',(1, 1.3, 1.5),index=0)
-    with col3:    
         S = st.selectbox('Suelo',('S0','S1','S2','S3'),index=0)
+    with col3:    
+        U = st.selectbox('Uso',('Escencial', 'Importante', 'Común'),index=2)
         
     st.write("# COEFICIENTE SÍSMICO DE REDUCCIÓN, R")
     red0 = st.selectbox('Coeficiente básico de reducción, R0',('Acero: Pórticos Especiales Resistentes a Momentos (SMF)',
@@ -97,6 +98,7 @@ with st.sidebar.container():
 
 s = suelo[S][Z]
 z = zona[Z]
+u = uso[U]
 TP = periodo_P[S]
 TL = periodo_L[S]
 R0 = red[red0]
@@ -106,8 +108,11 @@ Ip = irreP[irrP]
 R = R0*Ia*Ip
 
 with st.sidebar.container():
-    st.write("Coeficiente sísmico de Reducción, R")
-    st.write(f"R = {R}")
+    st.write("Resumen")
+    st.write(f"$Z = {z}$, $S = {s}$, $U = {u}$")
+    st.write(f"$T_P = {TP}$, $T_L = {TL}$")
+    st.write(f"$R0 = {R0}$, $I_a = {Ia}$, $I_p = {Ip}$")
+    st.write(f"$R = {R}$")
 
 T = np.arange(0.0,10.01,0.025,dtype = 'double')
 T[0] = 0.005
