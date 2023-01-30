@@ -108,7 +108,7 @@ Ip = irreP[irrP]
 R = R0*Ia*Ip
 
 with st.sidebar.container():
-    st.write("Resumen")
+    st.write("# RESUMEN")
     st.write(f"$Z = {z}$, $S = {s}$, $U = {u}$")
     st.write(f"$T_P = {TP}$, $T_L = {TL}$")
     st.write(f"$R0 = {R0}$, $I_a = {Ia}$, $I_p = {Ip}$")
